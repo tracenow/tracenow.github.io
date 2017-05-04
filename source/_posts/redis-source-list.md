@@ -14,7 +14,7 @@ tags: [redis, source]
 * 整数集合 [intset.h](https://github.com/tracenow/redis-4.0-annotation/blob/master/src/intset.h)、[intset.c](https://github.com/tracenow/redis-4.0-annotation/blob/master/src/intset.c)
 * 压缩列表 [ziplist.h](https://github.com/tracenow/redis-4.0-annotation/blob/master/src/ziplist.h)、[ziplist.c](https://github.com/tracenow/redis-4.0-annotation/blob/master/src/ziplist.c)
 * 压缩字典 [zipmap.h](https://github.com/tracenow/redis-4.0-annotation/blob/master/src/zipmap.h)、[zipmap.c](https://github.com/tracenow/redis-4.0-annotation/blob/master/src/zipmap.c)
-* 快速链表 [quicklist.h](https://github.com/tracenow/redis-4.0-annotation/blob/master/src/quicklist.h、[quicklist.c](https://github.com/tracenow/redis-4.0-annotation/blob/master/src/quicklist.c)
+* 快速链表 [quicklist.h](https://github.com/tracenow/redis-4.0-annotation/blob/master/src/quicklist.h)、[quicklist.c](https://github.com/tracenow/redis-4.0-annotation/blob/master/src/quicklist.c)
 * 基数统计 [hyperloglog.c](https://github.com/tracenow/redis-4.0-annotation/blob/master/src/hyperloglog.c)(hllhdr结构, hll 开头的函数)
 * geohash [geohash.h](https://github.com/tracenow/redis-4.0-annotation/blob/master/src/geohash.h)、[geohash.c](https://github.com/tracenow/redis-4.0-annotation/blob/master/src/geohash.c)
 
