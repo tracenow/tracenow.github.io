@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="Redis源码阅读列表一、基础数据结构 内存分配 zmalloc.h、zmalloc.c、sdsalloc.h 简单动态字符串 sds.h、sds.c 双端链表 adlist.h、adlist.c 字典 dict.h、dict.c 跳跃表 server.h（zskiplist以及zskiplistNode结构）、t_zset.c(zsl开头的函数) 整数集合 intset.h、intset.c 压">
+<meta name="description" content="Redis 4.0源码阅读列表一、基础数据结构 内存分配 zmalloc.h、zmalloc.c、sdsalloc.h 简单动态字符串 sds.h、sds.c 双端链表 adlist.h、adlist.c 字典 dict.h、dict.c 跳跃表 server.h（zskiplist以及zskiplistNode结构）、t_zset.c(zsl开头的函数) 整数集合 intset.h、intset">
 <meta name="keywords" content="redis,source">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redis源码剖析-源码结构分析">
 <meta property="og:url" content="https://tracenow.github.io/2017/05/03/redis-source-list/index.html">
 <meta property="og:site_name" content="trace&#39;s blog">
-<meta property="og:description" content="Redis源码阅读列表一、基础数据结构 内存分配 zmalloc.h、zmalloc.c、sdsalloc.h 简单动态字符串 sds.h、sds.c 双端链表 adlist.h、adlist.c 字典 dict.h、dict.c 跳跃表 server.h（zskiplist以及zskiplistNode结构）、t_zset.c(zsl开头的函数) 整数集合 intset.h、intset.c 压">
-<meta property="og:updated_time" content="2017-05-04T02:40:20.721Z">
+<meta property="og:description" content="Redis 4.0源码阅读列表一、基础数据结构 内存分配 zmalloc.h、zmalloc.c、sdsalloc.h 简单动态字符串 sds.h、sds.c 双端链表 adlist.h、adlist.c 字典 dict.h、dict.c 跳跃表 server.h（zskiplist以及zskiplistNode结构）、t_zset.c(zsl开头的函数) 整数集合 intset.h、intset">
+<meta property="og:updated_time" content="2017-05-04T03:02:05.059Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis源码剖析-源码结构分析">
-<meta name="twitter:description" content="Redis源码阅读列表一、基础数据结构 内存分配 zmalloc.h、zmalloc.c、sdsalloc.h 简单动态字符串 sds.h、sds.c 双端链表 adlist.h、adlist.c 字典 dict.h、dict.c 跳跃表 server.h（zskiplist以及zskiplistNode结构）、t_zset.c(zsl开头的函数) 整数集合 intset.h、intset.c 压">
+<meta name="twitter:description" content="Redis 4.0源码阅读列表一、基础数据结构 内存分配 zmalloc.h、zmalloc.c、sdsalloc.h 简单动态字符串 sds.h、sds.c 双端链表 adlist.h、adlist.c 字典 dict.h、dict.c 跳跃表 server.h（zskiplist以及zskiplistNode结构）、t_zset.c(zsl开头的函数) 整数集合 intset.h、intset">
 
 
 
@@ -408,7 +408,7 @@
       
 
       
-        <h1 id="Redis源码阅读列表"><a href="#Redis源码阅读列表" class="headerlink" title="Redis源码阅读列表"></a>Redis源码阅读列表</h1><h2 id="一、基础数据结构"><a href="#一、基础数据结构" class="headerlink" title="一、基础数据结构"></a>一、基础数据结构</h2><ul>
+        <h1 id="Redis-4-0源码阅读列表"><a href="#Redis-4-0源码阅读列表" class="headerlink" title="Redis 4.0源码阅读列表"></a>Redis 4.0源码阅读列表</h1><h2 id="一、基础数据结构"><a href="#一、基础数据结构" class="headerlink" title="一、基础数据结构"></a>一、基础数据结构</h2><ul>
 <li>内存分配 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/zmalloc.h" target="_blank" rel="external">zmalloc.h</a>、<a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/zmalloc.c" target="_blank" rel="external">zmalloc.c</a>、<a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/sdsalloc.h" target="_blank" rel="external">sdsalloc.h</a></li>
 <li>简单动态字符串 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/sds.h" target="_blank" rel="external">sds.h</a>、<a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/sds.c" target="_blank" rel="external">sds.c</a></li>
 <li>双端链表 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/adlist.h" target="_blank" rel="external">adlist.h</a>、<a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/adlist.c" target="_blank" rel="external">adlist.c</a></li>
@@ -416,77 +416,77 @@
 <li>跳跃表 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/server.h" target="_blank" rel="external">server.h</a>（zskiplist以及zskiplistNode结构）、<a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/t_zset.c" target="_blank" rel="external">t_zset.c</a>(zsl开头的函数)</li>
 <li>整数集合 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/intset.h" target="_blank" rel="external">intset.h</a>、<a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/intset.c" target="_blank" rel="external">intset.c</a></li>
 <li>压缩列表 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/ziplist.h" target="_blank" rel="external">ziplist.h</a>、<a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/ziplist.c" target="_blank" rel="external">ziplist.c</a></li>
-<li>压缩字典 zipmap.h、zipmap.c</li>
-<li>快速链表 quicklist.h、quicklist.c</li>
-<li>基数统计 hyperloglog.c(hllhdr结构, hll 开头的函数)</li>
-<li>geohash geohash.h、geohash.c</li>
+<li>压缩字典 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/zipmap.h" target="_blank" rel="external">zipmap.h</a>、<a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/zipmap.c" target="_blank" rel="external">zipmap.c</a></li>
+<li>快速链表 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/quicklist.h、[quicklist.c](https://github.com/tracenow/redis-4.0-annotation/blob/master/src/quicklist.c" target="_blank" rel="external">quicklist.h</a></li>
+<li>基数统计 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/hyperloglog.c" target="_blank" rel="external">hyperloglog.c</a>(hllhdr结构, hll 开头的函数)</li>
+<li>geohash <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/geohash.h" target="_blank" rel="external">geohash.h</a>、<a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/geohash.c" target="_blank" rel="external">geohash.c</a></li>
 </ul>
 <h2 id="二、Redis数据类型"><a href="#二、Redis数据类型" class="headerlink" title="二、Redis数据类型"></a>二、Redis数据类型</h2><ul>
-<li>对象系统 object.c</li>
-<li>字符串键 t_string.c</li>
-<li>列表建 t_list.c</li>
-<li>哈希键 t_hash.c</li>
-<li>集合键 t_set.c</li>
-<li>有序集合键 t_zset.c(除zsl开头的所有函数)</li>
-<li>HyperLogLog键 hyperloglog.c(pf开头的函数)</li>
-<li>地理位置 geo.h、geo.c</li>
+<li>对象系统 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/object.c" target="_blank" rel="external">object.c</a></li>
+<li>字符串键 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/t_string.c" target="_blank" rel="external">t_string.c</a></li>
+<li>列表建 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/t_list.c" target="_blank" rel="external">t_list.c</a></li>
+<li>哈希键 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/t_hash.c" target="_blank" rel="external">t_hash.c</a></li>
+<li>集合键 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/t_set.c" target="_blank" rel="external">t_set.c</a></li>
+<li>有序集合键 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/t_zset.c" target="_blank" rel="external">t_zset.c</a>(除zsl开头的所有函数)</li>
+<li>HyperLogLog键 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/hyperloglog.c" target="_blank" rel="external">hyperloglog.c</a>(pf开头的函数)</li>
+<li>地理位置 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/geo.h" target="_blank" rel="external">geo.h</a>、<a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/geo.c" target="_blank" rel="external">geo.c</a></li>
 </ul>
 <h2 id="三、Redis数据库"><a href="#三、Redis数据库" class="headerlink" title="三、Redis数据库"></a>三、Redis数据库</h2><ul>
-<li>数据库实现 db.c</li>
-<li>通知功能 notify.c</li>
-<li>RDB持久化 rdb.h、rdb.c</li>
-<li>AOF持久化 aof.c</li>
+<li>数据库实现 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/db.c" target="_blank" rel="external">db.c</a></li>
+<li>通知功能 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/notify.c" target="_blank" rel="external">notify.c</a></li>
+<li>RDB持久化 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/rdb.h" target="_blank" rel="external">rdb.h</a>、<a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/rdb.c" target="_blank" rel="external">rdb.c</a></li>
+<li>AOF持久化 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/aof.c" target="_blank" rel="external">aof.c</a></li>
 </ul>
 <h2 id="四、客户端-服务端"><a href="#四、客户端-服务端" class="headerlink" title="四、客户端/服务端"></a>四、客户端/服务端</h2><ul>
-<li>事件处理模块 ae.h、ae.c、ae_epoll.c、ae_evport.c、ae_kqueue.c、ae_select.c</li>
-<li>网路链接库 anet.h、anet.c、networking.c</li>
-<li>服务器端 server.h、server.c</li>
-<li>客户端 redis-cli.c</li>
+<li>事件处理模块 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/ae.h" target="_blank" rel="external">ae.h</a>、<a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/ae.c" target="_blank" rel="external">ae.c</a>、<a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/ae_epoll.c" target="_blank" rel="external">ae_epoll.c</a>、<a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/ae_evport.c" target="_blank" rel="external">ae_evport.c</a>、<a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/ae_kqueue.c" target="_blank" rel="external">ae_kqueue.c</a>、<a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/ae_select.c" target="_blank" rel="external">ae_select.c</a></li>
+<li>网路链接库 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/anet.h" target="_blank" rel="external">anet.h</a>、<a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/anet.c" target="_blank" rel="external">anet.c</a>、<a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/networking.c" target="_blank" rel="external">networking.c</a></li>
+<li>服务器端 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/server.h" target="_blank" rel="external">server.h</a>、<a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/server.c" target="_blank" rel="external">server.c</a></li>
+<li>客户端 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/redis-cli.c" target="_blank" rel="external">redis-cli.c</a></li>
 </ul>
 <h2 id="五、分布式Redis"><a href="#五、分布式Redis" class="headerlink" title="五、分布式Redis"></a>五、分布式Redis</h2><ul>
-<li>复制功能 replication.c</li>
-<li>Redis哨兵 sentinel.c</li>
-<li>Redis集群 cluster.h、cluster.c</li>
+<li>复制功能 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/replication.c" target="_blank" rel="external">replication.c</a></li>
+<li>Redis哨兵 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/sentinel.c" target="_blank" rel="external">sentinel.c</a></li>
+<li>Redis集群 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/cluster.h" target="_blank" rel="external">cluster.h</a>、<a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/cluster.c" target="_blank" rel="external">cluster.c</a></li>
 </ul>
 <h2 id="六、独立功能模块"><a href="#六、独立功能模块" class="headerlink" title="六、独立功能模块"></a>六、独立功能模块</h2><ul>
-<li>发布和订阅 pubsub.c</li>
-<li>事务 multi.c</li>
+<li>发布和订阅 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/pubsub.c" target="_blank" rel="external">pubsub.c</a></li>
+<li>事务 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/multi.c" target="_blank" rel="external">multi.c</a></li>
 </ul>
 <h2 id="七、测试"><a href="#七、测试" class="headerlink" title="七、测试"></a>七、测试</h2><ul>
-<li>内存检测 memtest.c</li>
-<li>redis性能测试 redis_benchmark.c</li>
-<li>更新日志检查 redis_check_aof.c</li>
-<li>本地数据库检查 redis_check_rdb.c</li>
-<li>C风格的小型测试框架 testhelp.c</li>
+<li>内存检测 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/memtest.c" target="_blank" rel="external">memtest.c</a></li>
+<li>redis性能测试 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/redis_benchmark.c" target="_blank" rel="external">redis_benchmark.c</a></li>
+<li>更新日志检查 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/redis_check_aof.c" target="_blank" rel="external">redis_check_aof.c</a></li>
+<li>本地数据库检查 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/redis_check_rdb.c" target="_blank" rel="external">redis_check_rdb.c</a></li>
+<li>C风格的小型测试框架 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/testhelp.c" target="_blank" rel="external">testhelp.c</a></li>
 </ul>
 <h2 id="八、工具类"><a href="#八、工具类" class="headerlink" title="八、工具类"></a>八、工具类</h2><ul>
-<li>二进制位操作命令 bitops.c</li>
-<li>调试 debug.c</li>
-<li>高低位转换 endianconv.h、endianconv.c(适配不同系统)</li>
-<li>辅助于命令的提示信息 help.h</li>
-<li>压缩算法 lzf.h、lzf_c.c、lzf_d.c、lzfP.h</li>
-<li>随机数 rand.h、rand.c</li>
-<li>版本发布 release.c</li>
-<li>sha加密算法 sha1.h、sha1.c</li>
-<li>通用工具类 util.h、util.c</li>
-<li>循环冗余校验 crc16.c、crc64.h、crc64.c</li>
-<li>SORT命令 sort.c</li>
-<li>伪随机函数 siphash.c</li>
-<li>进程信息操作 setproctitle.c</li>
-<li>geo工具类 geohash_helper.h、geohash_helper.c</li>
+<li>二进制位操作命令 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/bitops.c" target="_blank" rel="external">bitops.c</a></li>
+<li>调试 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/debug.c" target="_blank" rel="external">debug.c</a></li>
+<li>高低位转换 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/endianconv.h" target="_blank" rel="external">endianconv.h</a>、<a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/endianconv.c" target="_blank" rel="external">endianconv.c</a>(适配不同系统)</li>
+<li>辅助于命令的提示信息 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/help.h" target="_blank" rel="external">help.h</a></li>
+<li>压缩算法 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/lzf.h" target="_blank" rel="external">lzf.h</a>、<a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/lzf_c.c" target="_blank" rel="external">lzf_c.c</a>、<a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/lzf_d.c" target="_blank" rel="external">lzf_d.c</a>、<a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/lzfP.h" target="_blank" rel="external">lzfP.h</a></li>
+<li>随机数 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/rand.h" target="_blank" rel="external">rand.h</a>、<a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/rand.c" target="_blank" rel="external">rand.c</a></li>
+<li>版本发布 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/release.c" target="_blank" rel="external">release.c</a></li>
+<li>sha加密算法 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/sha1.h" target="_blank" rel="external">sha1.h</a>、<a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/sha1.c" target="_blank" rel="external">sha1.c</a></li>
+<li>通用工具类 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/util.h" target="_blank" rel="external">util.h</a>、<a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/util.c" target="_blank" rel="external">util.c</a></li>
+<li>循环冗余校验 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/crc16.c" target="_blank" rel="external">crc16.c</a>、<a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/crc64.h" target="_blank" rel="external">crc64.h</a>、<a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/crc64.c" target="_blank" rel="external">crc64.c</a></li>
+<li>SORT命令 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/sort.c" target="_blank" rel="external">sort.c</a></li>
+<li>伪随机函数 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/siphash.c" target="_blank" rel="external">siphash.c</a></li>
+<li>进程信息操作 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/setproctitle.c" target="_blank" rel="external">setproctitle.c</a></li>
+<li>geo工具类 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/geohash_helper.h" target="_blank" rel="external">geohash_helper.h</a>、<a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/geohash_helper.c" target="_blank" rel="external">geohash_helper.c</a></li>
 </ul>
 <h2 id="九、封装类"><a href="#九、封装类" class="headerlink" title="九、封装类"></a>九、封装类</h2><ul>
-<li>后台线程I/O bio.h、bio.c</li>
-<li>延迟类 latency.h、latency.c</li>
-<li>排序算法类 pqsort.h、pqsort.c</li>
-<li>Redis定义的I/O类 rio.h、rio.c</li>
-<li>同步Socket和文件I/O操作 syncio.c</li>
+<li>后台线程I/O <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/bio.h" target="_blank" rel="external">bio.h</a>、<a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/bio.c" target="_blank" rel="external">bio.c</a></li>
+<li>延迟类 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/latency.h" target="_blank" rel="external">latency.h</a>、<a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/latency.c" target="_blank" rel="external">latency.c</a></li>
+<li>排序算法类 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/pqsort.h" target="_blank" rel="external">pqsort.h</a>、<a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/pqsort.c" target="_blank" rel="external">pqsort.c</a></li>
+<li>Redis定义的I/O类 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/rio.h" target="_blank" rel="external">rio.h</a>、<a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/rio.c" target="_blank" rel="external">rio.c</a></li>
+<li>同步Socket和文件I/O操作 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/syncio.c" target="_blank" rel="external">syncio.c</a></li>
 </ul>
 <h2 id="十、其他"><a href="#十、其他" class="headerlink" title="十、其他"></a>十、其他</h2><ul>
-<li>微线图 sparkline.h、sparkline.c</li>
-<li>慢日志 slowlog.h、slowlog.c</li>
-<li>脚本 scripting.c</li>
-<li>过期机制 expire.c</li>
+<li>微线图 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/sparkline.h" target="_blank" rel="external">sparkline.h</a>、<a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/sparkline.c" target="_blank" rel="external">sparkline.c</a></li>
+<li>慢日志 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/slowlog.h" target="_blank" rel="external">slowlog.h</a>、<a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/slowlog.c" target="_blank" rel="external">slowlog.c</a></li>
+<li>脚本 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/scripting.c" target="_blank" rel="external">scripting.c</a></li>
+<li>过期机制 <a href="https://github.com/tracenow/redis-4.0-annotation/blob/master/src/expire.c" target="_blank" rel="external">expire.c</a></li>
 </ul>
 
       
@@ -666,7 +666,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis源码阅读列表"><span class="nav-number">1.</span> <span class="nav-text">Redis源码阅读列表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、基础数据结构"><span class="nav-number">1.1.</span> <span class="nav-text">一、基础数据结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、Redis数据类型"><span class="nav-number">1.2.</span> <span class="nav-text">二、Redis数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、Redis数据库"><span class="nav-number">1.3.</span> <span class="nav-text">三、Redis数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、客户端-服务端"><span class="nav-number">1.4.</span> <span class="nav-text">四、客户端/服务端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、分布式Redis"><span class="nav-number">1.5.</span> <span class="nav-text">五、分布式Redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、独立功能模块"><span class="nav-number">1.6.</span> <span class="nav-text">六、独立功能模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、测试"><span class="nav-number">1.7.</span> <span class="nav-text">七、测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#八、工具类"><span class="nav-number">1.8.</span> <span class="nav-text">八、工具类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#九、封装类"><span class="nav-number">1.9.</span> <span class="nav-text">九、封装类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十、其他"><span class="nav-number">1.10.</span> <span class="nav-text">十、其他</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-4-0源码阅读列表"><span class="nav-number">1.</span> <span class="nav-text">Redis 4.0源码阅读列表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、基础数据结构"><span class="nav-number">1.1.</span> <span class="nav-text">一、基础数据结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、Redis数据类型"><span class="nav-number">1.2.</span> <span class="nav-text">二、Redis数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、Redis数据库"><span class="nav-number">1.3.</span> <span class="nav-text">三、Redis数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、客户端-服务端"><span class="nav-number">1.4.</span> <span class="nav-text">四、客户端/服务端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、分布式Redis"><span class="nav-number">1.5.</span> <span class="nav-text">五、分布式Redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、独立功能模块"><span class="nav-number">1.6.</span> <span class="nav-text">六、独立功能模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、测试"><span class="nav-number">1.7.</span> <span class="nav-text">七、测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#八、工具类"><span class="nav-number">1.8.</span> <span class="nav-text">八、工具类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#九、封装类"><span class="nav-number">1.9.</span> <span class="nav-text">九、封装类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十、其他"><span class="nav-number">1.10.</span> <span class="nav-text">十、其他</span></a></li></ol></li></ol></div>
             
 
           </div>
