@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="redis,source," />
 
 
 
@@ -88,14 +88,15 @@
 
 
 <meta name="description" content="Redis源码阅读列表一、基础数据结构 内存分配 zmalloc.h、zmalloc.c、sdsalloc.h 简单动态字符串 sds.h、sds.c 双端链表 adlist.h、adlist.c 字典 dict.h、dict.c 跳跃表 server.h（zskiplist以及zskiplistNode结构）、t_zset.c(zsl开头的函数) 整数集合 intset.h、intset.c 压">
+<meta name="keywords" content="redis,source">
 <meta property="og:type" content="article">
-<meta property="og:title" content="trace&#39;s blog">
+<meta property="og:title" content="Redis源码剖析-源码结构分析">
 <meta property="og:url" content="https://tracenow.github.io/2017/05/03/redis-source-list/index.html">
 <meta property="og:site_name" content="trace&#39;s blog">
 <meta property="og:description" content="Redis源码阅读列表一、基础数据结构 内存分配 zmalloc.h、zmalloc.c、sdsalloc.h 简单动态字符串 sds.h、sds.c 双端链表 adlist.h、adlist.c 字典 dict.h、dict.c 跳跃表 server.h（zskiplist以及zskiplistNode结构）、t_zset.c(zsl开头的函数) 整数集合 intset.h、intset.c 压">
-<meta property="og:updated_time" content="2017-04-28T11:45:10.142Z">
+<meta property="og:updated_time" content="2017-05-04T02:40:20.721Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="trace&#39;s blog">
+<meta name="twitter:title" content="Redis源码剖析-源码结构分析">
 <meta name="twitter:description" content="Redis源码阅读列表一、基础数据结构 内存分配 zmalloc.h、zmalloc.c、sdsalloc.h 简单动态字符串 sds.h、sds.c 双端链表 adlist.h、adlist.c 字典 dict.h、dict.c 跳跃表 server.h（zskiplist以及zskiplistNode结构）、t_zset.c(zsl开头的函数) 整数集合 intset.h、intset.c 压">
 
 
@@ -130,7 +131,7 @@
 
 
 
-  <title>  | trace's blog </title>
+  <title> Redis源码剖析-源码结构分析 | trace's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -324,7 +325,7 @@
             
             
               
-                
+                Redis源码剖析-源码结构分析
               
             
           </h2>
@@ -349,6 +350,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/redis/" itemprop="url" rel="index">
+                    <span itemprop="name">redis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -486,6 +509,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/redis/" rel="tag"># redis</a>
+          
+            <a href="/tags/source/" rel="tag"># source</a>
+          
+        </div>
+      
 
       
         
@@ -503,7 +534,7 @@
     <div class="post-spread">
       
         <div class="ds-share flat" data-thread-key="2017/05/03/redis-source-list/"
-     data-title=""
+     data-title="Redis源码剖析-源码结构分析"
      data-content=""
      data-url="https://tracenow.github.io/2017/05/03/redis-source-list/">
   <div class="ds-share-inline">
@@ -533,7 +564,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2017/05/03/redis-source-list/"
-           data-title="" data-url="https://tracenow.github.io/2017/05/03/redis-source-list/">
+           data-title="Redis源码剖析-源码结构分析" data-url="https://tracenow.github.io/2017/05/03/redis-source-list/">
       </div>
     
   </div>
@@ -589,7 +620,21 @@
           
 
           
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
 
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
           
 
         </nav>
